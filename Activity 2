@@ -1,0 +1,44 @@
+def main():
+    filename = "notes.txt"
+
+    while True:
+        print("\n------------NOTE APP -------------")
+        print("1. Add Note")
+        print("2. View Notes")
+        print("3. Exit")
+
+        choice = input("Enter your choice: ")
+
+        try:
+            if choice == "1":
+                note = input("\nADD YOUR NOTE: ")
+                with open(filename, "a") as file:
+                    file.write(note + "\n")
+                print("\nNote saved!")
+
+            elif choice == "2":
+                print("\n------------ VIEW NOTES -------------")
+                try:
+                    with open(filename, "r") as file:
+                        content = file.read()
+                        if content.strip() == "":
+                            print("(No notes yet)")
+                        else:
+                            print(content)
+                except FileNotFoundError:
+                    print("(No notes yet)")
+
+            elif choice == "3":
+                print("\n------------ EXIT -------------")
+                print("GOODBYE!")
+                break
+
+            else:
+                print("Invalid choice. Try again.")
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+
+if __name__ == "__main__":
+    main()
